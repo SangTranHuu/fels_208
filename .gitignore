@@ -15,4 +15,6 @@ bootstrap/cache/
 .rocketeer/
 public/js
 public/css
+.idea/
+npm-debug.log
 
