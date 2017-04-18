@@ -11,6 +11,15 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', 'HomeController@showWelcomeView');
+
+Auth::routes();
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/home', 'HomeController@index');
 });
+
+Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
+    Route::get('/home', 'Admin\HomeController@index')->name('admin_home');
+});
+
