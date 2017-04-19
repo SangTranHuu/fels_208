@@ -19,4 +19,9 @@ return [
     'home' => 'Home',
     'logged_in' => 'You are logged in!',
     'welcome_admin' => 'Welcome admin',
+    'login_with' => 'Or login with',
+    'update_email' => 'Update Email',
+    'email_required' => 'An email address is required!',
+    'update_email' => 'Update Email',
+    'email_existed' => 'Email existed!',
 ];

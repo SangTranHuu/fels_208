@@ -34,7 +34,7 @@
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                {!! Form::submit(trans('messages.send_reset_link'), ['class' => 'btn btn-primary']) !!}
+                                {!! Form::submit(trans('messages.send_password_reset_link'), ['class' => 'btn btn-primary']) !!}
                             </div>
                         </div>
                         {!! Form::close() !!}
