@@ -18,10 +18,15 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
+            if (Auth::user()->email == '') {
+                return redirect()->action('HomeController@showUpdateEmailForm');
+            }
+
             if (Auth::user()->is_admin) {
                 return redirect()->action('Admin\HomeController@index');
             }
-            return redirect('/home');
+
+            return redirect()->action('HomeController@index');
         }
 
         return $next($request);

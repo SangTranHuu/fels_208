@@ -23,3 +23,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('/home', 'Admin\HomeController@index')->name('admin_home');
 });
 
+Route::group(['prefix' => 'social'], function () {
+    Route::get('redirect/{provider}', 'Auth\SocialAuthController@redirect');
+    Route::get('callback/{provider}', 'Auth\SocialAuthController@callback');
+    Route::get('update-email', 'HomeController@showUpdateEmailForm');
+    Route::post('update-email', 'HomeController@updateEmail');
+});
+

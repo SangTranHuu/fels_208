@@ -49,7 +49,7 @@
                                 </div>
 
                                 <div class="col-md-offset-7">
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                                    <a class="btn btn-link" href="{{ action('Auth\ResetPasswordController@reset') }}">
                                         {{ trans('messages.forgot_password') }}
                                     </a>
                                 </div>
@@ -58,6 +58,18 @@
                             <div class="form-group">
                                 <div class="col-md-8 col-md-offset-4">
                                     {!! Form::submit('Login', ['class' => 'btn btn-primary btn-raised']) !!}
+                                </div>
+                                <div class="col-md-offset-6">
+                                    {{ trans('messages.login_with') }}
+                                    <a href="{{ action('Auth\SocialAuthController@redirect', [ 'provider' => 'facebook']) }}"
+                                       class="btn btn-social-icon btn-facebook">
+                                        <span class="fa fa-facebook"></span>
+                                    </a>
+
+                                    <a href="{{ action('Auth\SocialAuthController@redirect', [ 'provider' => 'google']) }}"
+                                       class="btn btn-social-icon btn-google">
+                                        <span class="fa fa-google"></span>
+                                    </a>
                                 </div>
                             </div>
                         {!! Form::close() !!}
