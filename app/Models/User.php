@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\File;
 
 class User extends Authenticatable
 {
@@ -55,5 +57,26 @@ class User extends Authenticatable
     public function followers()
     {
         return $this->belongsToMany(User::class, 'follows', 'followed_id', 'follower_id');
+    }
+
+    public function scopeIsUser($query)
+    {
+        return $query->where('is_admin', '=', 0);
+    }
+
+    public function setPasswordAttribute($password)
+    {
+        $this->attributes['password'] = Hash::make($password);
+    }
+
+    public function setAvatarAttribute($avatar)
+    {
+        $filename = $avatar->getClientOriginalName();
+        $avatar->move(config('custom.url.avatar'), $filename);
+        if (File::exists(config('custom.url.avatar') . $this->avatar)) {
+            File::delete(config('custom.url.avatar') . $this->avatar);
+        }
+
+        $this->attributes['avatar'] = $filename;
     }
 }

@@ -12,7 +12,6 @@
 */
 
 Route::get('/', 'HomeController@showWelcomeView');
-
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
@@ -21,6 +20,8 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('/home', 'Admin\HomeController@index')->name('admin_home');
+    Route::resource('users', 'Admin\UserController');
+    Route::resource('courses', 'Admin\CourseController');
 });
 
 Route::group(['prefix' => 'social'], function () {
@@ -29,4 +30,3 @@ Route::group(['prefix' => 'social'], function () {
     Route::get('update-email', 'HomeController@showUpdateEmailForm');
     Route::post('update-email', 'HomeController@updateEmail');
 });
-
